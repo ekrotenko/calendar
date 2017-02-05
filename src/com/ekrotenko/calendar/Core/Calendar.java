@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Eugene on 31.01.2017.
  */
 public interface Calendar {
-    void addEvent(Event event) throws EventOutputException;
+    void addEvent(Event event);
     List<Event> getEventsInInterval(LocalDateTime from, LocalDateTime to); //sorted
     List<Event> getEventsInLocation(String location);
     void removeEvent (LocalDateTime startTime);

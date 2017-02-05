@@ -16,7 +16,7 @@ public class InMemoryCalendar implements Calendar {
 
 
     @Override
-    public void addEvent(Event event) throws EventOutputException {
+    public void addEvent(Event event){
         Event oldEvent = events.put(event.getStartTime(), event);
         if(oldEvent!=null) {
             eventsByLocation.get(oldEvent.getLocation()).remove(oldEvent.getStartTime());
@@ -29,7 +29,12 @@ public class InMemoryCalendar implements Calendar {
         else{
             eventsByLocation.get(event.getLocation()).put(event.getStartTime(),event);
         }
-        output.outputData(getAllEvents());
+        try {
+            output.outputData(getAllEvents());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private List<Event> getAllEvents(){
@@ -63,5 +68,11 @@ public class InMemoryCalendar implements Calendar {
     public void removeEvent(LocalDateTime startTime) {
         Event eToRemove=events.remove(startTime);
         eventsByLocation.get(eToRemove.getLocation()).remove(startTime);
+        try {
+            output.outputData(getAllEvents());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

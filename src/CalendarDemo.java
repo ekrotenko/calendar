@@ -12,20 +12,33 @@ public class CalendarDemo {
 
     public static void main(String[] args) {
 	// write your code here
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        Event event1 = new Event(LocalDateTime.parse("2017-02-19 22:00", formatter), "My Birthday Party", "Bartolomeo");
+        Event event2 = new Event(LocalDateTime.parse("2017-01-01 22:00", formatter), "New Year Party", "Bartolomeo");
+        Event event3 = new Event(LocalDateTime.parse("2017-02-01 17:00", formatter), "Hair Cut", "Barbershop");
+        Event event4 = new Event(LocalDateTime.parse("2017-02-03 17:00", formatter), "Dating", "Coast");
         InMemoryCalendar calendar = new InMemoryCalendar();
         Input input = new FileInput();
         try {
             calendar = input.getData();
+//            calendar.addEvent(event1);
+//            calendar.addEvent(event2);
+//            calendar.addEvent(event3);
+//            calendar.addEvent(event4);
+            //calendar.removeEvent(LocalDateTime.parse("2017-02-03 17:00", formatter));
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
 
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //Event event1 = new Event(LocalDateTime.parse("2017-02-20 17:00", formatter), "CEO meeting", "HQ office");
 //        Event event1 = new Event(LocalDateTime.parse("2017-02-19 22:00", formatter), "My Birthday Party", "Bartolomeo");
 //        Event event2 = new Event(LocalDateTime.parse("2017-01-01 22:00", formatter), "New Year Party", "Bartolomeo");
 //        Event event3 = new Event(LocalDateTime.parse("2017-02-01 17:00", formatter), "Hair Cut", "Barbershop");
 //        Event event4 = new Event(LocalDateTime.parse("2017-02-01 17:00", formatter), "Dating", "Coast");
+
+
 
 //        InMemoryCalendar myCalendar = new InMemoryCalendar();
 //        try {
